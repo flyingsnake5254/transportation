@@ -34,7 +34,7 @@ taoyuan = taoyuanName.split(",")
 kaohsiun = kaohsiungName.split(",")
 others = othersName.split(",")
 
-total = freeway + expressway + provincialRoad + taipei
+
 for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
     if i.text in ["國道一號", "國道三號", "國道五號"]:
         print(i.text)
