@@ -34,7 +34,6 @@ taoyuan = taoyuanName.split(",")
 kaohsiun = kaohsiungName.split(",")
 others = othersName.split(",")
 
-
 for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
     if i.text in kaohsiun:
         print(i.text)
@@ -50,7 +49,7 @@ for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
             srcName[j["href"]] = lineName[index]
             index += 1
 
-    #========若只需高雄道路相關資料，請將此行以「下」至下方註解指示處之間的CODE主解起來即可
+    # ========若只需高雄道路相關資料，請將此行以「下」至下方註解指示處之間的CODE主解起來即可
 
     elif i.text in ["國道一號", "國道三號", "國道五號"]:
         print(i.text)
@@ -98,8 +97,7 @@ for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
             srcName[j["href"]] = lineName[index]
             index += 1
 
-
-    # ========若只需高雄道路相關資料，請將此行以「上」至下方註解指示處之間的CODE主解起來即可
+    # ========若只需高雄道路相關資料，請將此行以「上」至上方註解指示處之間的CODE主解起來即可
 
 # 於終端輸出所有CCTV網址
 # print("============src==================")
