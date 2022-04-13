@@ -36,7 +36,23 @@ others = othersName.split(",")
 
 
 for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
-    if i.text in ["國道一號", "國道三號", "國道五號"]:
+    if i.text in kaohsiun:
+        print(i.text)
+        lineName = []
+        for j in getSoup(i["href"]).select("div.cctv-stack a span img"):
+            lineName.append(j["alt"])
+
+        index = 0
+        for j in getSoup(i["href"]).select("div.cctv-stack a"):
+            print("--------", lineName[index], ":", j["href"])
+            # break #test
+            src.append(j["href"])
+            srcName[j["href"]] = lineName[index]
+            index += 1
+
+    #========若只需高雄道路相關資料，請將此行以「下」至下方註解指示處之間的CODE主解起來即可
+
+    elif i.text in ["國道一號", "國道三號", "國道五號"]:
         print(i.text)
         # pass
         for j in getSoup(i["href"]).select("h5.card-title a"):
@@ -68,7 +84,7 @@ for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
             src.append(j["href"])
             srcName[j["href"]] = lineName[index]
             index += 1
-    elif i.text in expressway + provincialRoad + taipei + newTaipei + taoyuan + kaohsiun + others:
+    elif i.text in expressway + provincialRoad + taipei + newTaipei + taoyuan + others:
         print(i.text)
         lineName = []
         for j in getSoup(i["href"]).select("div.cctv-stack a span img"):
@@ -81,6 +97,9 @@ for i in getSoup("https://tw.live/").select("div.cctv-menu ul li a"):
             src.append(j["href"])
             srcName[j["href"]] = lineName[index]
             index += 1
+
+
+    # ========若只需高雄道路相關資料，請將此行以「上」至下方註解指示處之間的CODE主解起來即可
 
 # 於終端輸出所有CCTV網址
 # print("============src==================")
